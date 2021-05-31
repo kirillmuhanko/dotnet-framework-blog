@@ -1,0 +1,57 @@
+@using BlogApplication.Models.Constants.Controllers
+@model BlogApplication.Models.ViewModels.Article.ArticleEditViewModel
+
+<div class="container mt-5">
+    <div class="row">
+        <h2 class="mx-auto">Edit Article</h2>
+    </div>
+
+    <div class="row">
+        @using (Html.BeginForm(
+            ActionNames.Edit,
+            ControllerNames.Article,
+            FormMethod.Post,
+            new {@class = "col-md-6 mx-auto", enctype = "multipart/form-data"}))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+            @Html.HiddenFor(t => t.Id)
+            @Html.DisplayFor(t => t.Title, "FormGroups/TextBoxFormGroupComponent")
+
+            <div id="image-upload-component">
+                @Html.DisplayFor(t => t.Image, "FormGroups/ImageFormGroupComponent")
+            </div>
+
+            <div id="image-preview-component">
+                @Html.DisplayFor(t => t.IsImageDeleted, "FormGroups/CheckBoxFormGroupComponent")
+                <div class="form-group">
+                    <div id="image-preview-component">
+                        <div class="component__image-preview img-responsive img-thumbnail mx-auto shadow-sm">
+                            <img class="component__image" src="@Url.Action(ActionNames.GetImage, ControllerNames.Article, new {id = Model.Id})" alt="Image Preview">
+                            <span class="component__text">
+                                Image Preview
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @Html.DisplayFor(t => t.Text, "FormGroups/TextAreaFormGroupComponent")
+
+            <div class="form-group">
+                <input class="btn btn-block btn-lg btn-outline-primary" type="submit" value="Save">
+            </div>
+
+            <div class="form-group">
+                <p class="text-center">
+                    @Html.ActionLink("Back to article list", ActionNames.List)
+                </p>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>blogApp.ArticleEditPage.init()</script>
+}

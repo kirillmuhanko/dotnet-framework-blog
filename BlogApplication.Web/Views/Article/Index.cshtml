@@ -1,0 +1,106 @@
+@using BlogApplication.Models.Constants.Controllers
+@model BlogApplication.Models.ViewModels.Article.ArticleIndexViewModel
+
+@using (Html.BeginForm(
+    null,
+    null,
+    FormMethod.Post,
+    new {id = "__AjaxAntiForgeryForm"}))
+{
+    @Html.AntiForgeryToken()
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <h1 class="display-4 font-size-12 mx-auto text-center">@Html.DisplayFor(t => t.Title.Text)</h1>
+    </div>
+    @if (Model.HasImage)
+    {
+        <div class="row">
+            <img class="bg-white image-cover-box-9 mb-4 mx-auto p-3 rounded shadow-sm" src="@Url.Action(ActionNames.GetImage, ControllerNames.Article, new {id = Model.Id})" alt>
+        </div>
+    }
+    <div class="row">
+        <div id="like-component" class="font-size-10 mb-2 mx-auto" liked="@($" {Model.IsLiked}")">
+            <a class="component__action-link mr-4 text-secondary" href="#" onclick="return false;">
+                <i class="fa fa-thumbs-down"></i>
+                <span class="component__text">@Model.DislikeCount</span>
+            </a>
+            <a class="component__action-link text-secondary" href="#" onclick="return false;">
+                <i class="fa fa-thumbs-up"></i>
+                <span class="component__text">@Model.LikeCount</span>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <p class="pl-3 pr-3 text-break text-justify">@Html.DisplayFor(t => t.Text.Text)</p>
+    </div>
+</div>
+
+@if (User.IsInRole(UserRoles.Subscriber))
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div id="comment-box-component" class="comment-box form-group">
+                    <div class="text-center">
+                        <label>Add a public comment</label>
+                    </div>
+                    <textarea class="component__textarea bg-light form-control"></textarea>
+                    <div class="text-right mt-2">
+                        <button class="component__button-cancel btn btn-outline-secondary">Cancel</button>
+                        <button class="component__button-comment btn btn-outline-success">Comment</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div id="comment-loader-component"></div>
+            <div id="spinner-component" class="text-center">
+                <div class="spinner-border text-warning" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    @Html.Partial("PartialViews/Article/_ArticleCommentTemplates")
+
+    <script>
+        blogApp.ArticleIndexPage.init({
+            commentBoxComponentParameters: {
+                apiUrl: '@Url.Action(ActionNames.Add, ControllerNames.ArticleComment)',
+                model: {
+                    id: @Model.Id
+                }
+            },
+            commentLoaderComponentParameters: {
+                apiUrl: '@Url.Action(ActionNames.List, ControllerNames.ArticleComment)',
+                commentParameters: {
+                    deleteApiUrl: '@Url.Action(ActionNames.Delete, ControllerNames.ArticleComment)',
+                    reportUrl: '@Url.Action(ActionNames.Report, ControllerNames.ArticleComment)',
+                    updateApiUrl: '@Url.Action(ActionNames.Update, ControllerNames.ArticleComment)'
+                },
+                id: @Model.Id,
+                pageSize: 5
+            },
+            likeComponentParameters: {
+                apiUrl: '@Url.Action(ActionNames.Like)',
+                articleId: @Model.Id,
+                isLocked: '@User.IsInRole(UserRoles.Rater)' === '@false',
+                model: {
+                    articleId: @Model.Id,
+                    isDeleted: '@Model.IsLikeDeleted' === '@true',
+                    isLiked: '@Model.IsLiked' === '@true'
+                }
+            }});
+    </script>
+}

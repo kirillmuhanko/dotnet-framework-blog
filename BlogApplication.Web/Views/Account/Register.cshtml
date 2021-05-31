@@ -1,0 +1,34 @@
+﻿@using BlogApplication.Models.Constants.Controllers
+@model BlogApplication.Models.ViewModels.Account.AccountRegisterViewModel
+
+<div class="container mt-5">
+    <div class="row">
+        <h2 class="mx-auto">Create account</h2>
+    </div>
+
+    <div class="row">
+        @using (Html.BeginForm(
+            ActionNames.Register,
+            ControllerNames.Account,
+            FormMethod.Post,
+            new {@class = "col-md-6 mx-auto", role = "form"}))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary("", new {@class = "text-danger"})
+            @Html.DisplayFor(t => t.UserName, "FormGroups/UserNameFormGroupComponent")
+            @Html.DisplayFor(t => t.Email, "FormGroups/TextBoxFormGroupComponent")
+            @Html.DisplayFor(t => t.Password, "FormGroups/PasswordFormGroupComponent")
+            @Html.DisplayFor(t => t.ConfirmPassword, "FormGroups/PasswordFormGroupComponent")
+
+            <div class="form-group">
+                <input class="btn btn-block btn-lg btn-outline-success" type="submit" value="Sign up">
+            </div>
+
+            <div class="form-group">
+                <p class="text-center">
+                    @Html.ActionLink("Already have an account?", ActionNames.LogIn)
+                </p>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,31 @@
+{
+  "name": "blog-task",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:dev": "webpack -d",
+    "build:prod": "webpack -p"
+  },
+  "author": "Kirill Muhanko",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^4.5.2",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.5.1"
+  },
+  "devDependencies": {
+    "@types/bootstrap": "^5.0.0",
+    "@types/jquery": "^3.5.2",
+    "css-loader": "^4.3.0",
+    "css-minimizer-webpack-plugin": "^1.1.5",
+    "file-loader": "^6.1.1",
+    "mini-css-extract-plugin": "^1.0.0",
+    "ts-loader": "^8.0.4",
+    "typescript": "^4.0.3",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12"
+  }
+}

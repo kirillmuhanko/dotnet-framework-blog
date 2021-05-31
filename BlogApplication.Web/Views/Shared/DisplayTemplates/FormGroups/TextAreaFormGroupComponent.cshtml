@@ -1,0 +1,17 @@
+﻿@using BlogApplication.Shared.Builders.Strings
+@model BlogApplication.Models.Components.FormGroups.TextAreaFormGroupComponent
+
+<div class="form-group">
+    @Html.TextAreaFor(
+        t => t.Text,
+        new
+        {
+            @class = HtmlClassBuilder.Create()
+                .WithHtmlClass("form-control")
+                .WithHtmlClass("is-valid", Model.IsOk)
+                .WithHtmlClass("is-invalid", Model.HasErrors)
+                .Build(),
+            placeholder = Html.DisplayNameFor(t => t)
+        })
+    @Html.ValidationMessageFor(t => t, "", new {@class = "invalid-feedback"})
+</div>

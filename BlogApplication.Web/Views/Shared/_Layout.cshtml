@@ -1,0 +1,64 @@
+﻿@using BlogApplication.Models.Constants.Controllers
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="stylesheet" href="~/bundles/css/blog.bundle.css"/>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="@Url.Action(ActionNames.Index, ControllerNames.Home)">
+        Blog
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="navbarSupportedContent" class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-sm-2">
+            <li class="nav-item active">
+                <a class="nav-link" href="@Url.Action(ActionNames.Index, ControllerNames.Home)">
+                    Home
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            @if (Request.IsAuthenticated && User.IsInRole(UserRoles.Administrator))
+            {
+                <li class="nav-item dropdown">
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Admin
+                    </a>
+                    <div class="dropdown-menu shadow-sm" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="@Url.Action(ActionNames.UserList, ControllerNames.Admin)">
+                            <span class="fa fa-user text-primary"></span>
+                            User Management
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="@Url.Action(ActionNames.ReportedArticleComment, ControllerNames.Admin)">
+                            <span class="fa fa-flag text-danger"></span>
+                            Reported Article Comment
+                        </a>
+                    </div>
+                </li>
+            }
+        </ul>
+        @Html.Partial("PartialViews/Account/_LoginPartial")
+    </div>
+</nav>
+
+@RenderBody()
+
+<div class="container body-content">
+    <hr/>
+    <footer>
+        <p>
+            &copy;@DateTime.Now.Year - My ASP.NET Application
+        </p>
+    </footer>
+</div>
+
+<script src="~/bundles/js/blog.bundle.js"></script>
+@RenderSection("scripts", false)
+</body>
+</html>

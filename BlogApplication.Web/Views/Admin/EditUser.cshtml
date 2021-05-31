@@ -1,0 +1,44 @@
+@using BlogApplication.Models.Constants.Controllers
+@model BlogApplication.Models.ViewModels.Admin.AdminEditUserViewModel
+
+<div class="container mt-5">
+    <div class="row">
+        <h2 class="mx-auto">Edit User</h2>
+    </div>
+
+    <div class="row">
+        <small class="mx-auto">@Model.UserName</small>
+    </div>
+
+    <div class="row">
+        @using (Html.BeginForm(
+            ActionNames.EditUser,
+            ControllerNames.Admin,
+            FormMethod.Post,
+            new {@class = "col-md-6 mx-auto", role = "form"}))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                @for (var i = 0; i < Model.Roles.Count; i++)
+                {
+                    <div class="form-check">
+                        @Html.HiddenFor(t => Model.Roles[i].Id)
+                        @Html.HiddenFor(t => Model.Roles[i].Name)
+                        @Html.CheckBoxFor(
+                            t => Model.Roles[i].IsChecked,
+                            new
+                            {
+                                @class = "form-check-input"
+                            })
+                        <label class="form-check-label">@Model.Roles[i].Name</label>
+                    </div>
+                }
+            </div>
+
+            <div class="form-group">
+                <input class="btn btn-block btn-lg btn-outline-primary" type="submit" value="Save">
+            </div>
+        }
+    </div>
+</div>

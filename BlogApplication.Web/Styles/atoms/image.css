@@ -1,0 +1,16 @@
+﻿.image-cover-5 {
+    height: 250px;
+    object-fit: cover;
+}
+
+.image-cover-6 {
+    height: 300px;
+    object-fit: cover;
+}
+
+.image-cover-box-9 {
+    max-height: 450px;
+    max-width: 450px;
+    object-fit: cover;
+    width: 100%;
+}

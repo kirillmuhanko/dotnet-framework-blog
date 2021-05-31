@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{20B255A2-1FD3-4418-BC95-61649CEC8207}</ProjectGuid>
+        <OutputType>Library</OutputType>
+        <AppDesignerFolder>Properties</AppDesignerFolder>
+        <RootNamespace>BlogApplication.Models</RootNamespace>
+        <AssemblyName>BlogApplication.Models</AssemblyName>
+        <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+        <FileAlignment>512</FileAlignment>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\Release\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="JetBrains.Annotations, Version=2021.1.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325">
+          <HintPath>..\packages\JetBrains.Annotations.2021.1.0\lib\net20\JetBrains.Annotations.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+          <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+          <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="System" />
+        <Reference Include="System.ComponentModel.DataAnnotations" />
+        <Reference Include="System.Core" />
+        <Reference Include="System.Web" />
+        <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+          <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.Helpers.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="System.Web.Mvc, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+          <HintPath>..\packages\Microsoft.AspNet.Mvc.5.1.3\lib\net45\System.Web.Mvc.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+          <HintPath>..\packages\Microsoft.AspNet.Razor.3.1.2\lib\net45\System.Web.Razor.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+          <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+          <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+          <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="Attributes\DependencyInjection\InstanceScopeAttribute.cs" />
+        <Compile Include="Attributes\Authorization\RoleBasedAuthorizationAttribute.cs" />
+        <Compile Include="Attributes\FormGroups\CompareFormGroupAttribute.cs" />
+        <Compile Include="Attributes\FormGroups\HtmlProtectionFormGroupAttribute.cs" />
+        <Compile Include="Attributes\FormGroups\MaxLengthFormGroupAttribute.cs" />
+        <Compile Include="Attributes\FormGroups\MinLengthFormGroupAttribute.cs" />
+        <Compile Include="Attributes\FormGroups\RegexFormGroupAttribute.cs" />
+        <Compile Include="Attributes\FormGroups\RequiredFormGroupAttribute.cs" />
+        <Compile Include="Attributes\FormGroups\StringLengthFormGroupAttribute.cs" />
+        <Compile Include="Components\Controls\LabelComponent.cs" />
+        <Compile Include="Components\FormGroups\CheckBoxFormGroupComponent.cs" />
+        <Compile Include="Components\FormGroups\FormGroupComponentBase.cs" />
+        <Compile Include="Components\FormGroups\ImageFormGroupComponent.cs" />
+        <Compile Include="Components\FormGroups\TextAreaFormGroupComponent.cs" />
+        <Compile Include="Components\FormGroups\TextBoxFormGroupComponent.cs" />
+        <Compile Include="Components\FormGroups\PasswordFormGroupComponent.cs" />
+        <Compile Include="Components\FormGroups\TextFormGroupComponentBase.cs" />
+        <Compile Include="Components\FormGroups\UserNameFormGroupComponent.cs" />
+        <Compile Include="Constants\Controllers\RequestTypes.cs" />
+        <Compile Include="Constants\Controllers\UserRoles.cs" />
+        <Compile Include="Constants\Controllers\ActionNames.cs" />
+        <Compile Include="Constants\Controllers\CacheProfiles.cs" />
+        <Compile Include="Constants\Controllers\ContentTypes.cs" />
+        <Compile Include="Constants\Controllers\ControllerNames.cs" />
+        <Compile Include="Constants\Controllers\ViewNames.cs" />
+        <Compile Include="Constants\DataTypes\BooleanDataTypes.cs" />
+        <Compile Include="Constants\Messages\AuthenticationMessages.cs" />
+        <Compile Include="Constants\Messages\SubjectMessages.cs" />
+        <Compile Include="Constants\Messages\ExceptionMessages.cs" />
+        <Compile Include="Constants\Messages\PageResultMessages.cs" />
+        <Compile Include="Constants\Messages\ValidationErrorMessages.cs" />
+        <Compile Include="Constants\RegularExpressions\RegexPatterns.cs" />
+        <Compile Include="Constants\Security\UserIds.cs" />
+        <Compile Include="Constants\StringSymbols\CharSymbols.cs" />
+        <Compile Include="Constants\StringSymbols\StringSymbols.cs" />
+        <Compile Include="DomainModels\Article\ArticleCommentDomainModel.cs" />
+        <Compile Include="DomainModels\Article\ArticleDomainModel.cs" />
+        <Compile Include="DomainModels\Configs\SmtpClientConfigModel.cs" />
+        <Compile Include="DomainModels\Common\PaginationDomainModel.cs" />
+        <Compile Include="DomainModels\Common\ResultStatusDomainModel.cs" />
+        <Compile Include="DomainModels\User\UserRoleDomainModel.cs" />
+        <Compile Include="Entities\Article\ArticleCommentEntity.cs" />
+        <Compile Include="Entities\Article\ArticleCommentReportEntity.cs" />
+        <Compile Include="Entities\Article\ArticleEntity.cs" />
+        <Compile Include="Entities\Article\ArticleLikeEntity.cs" />
+        <Compile Include="Entities\Base\EntityBase.cs" />
+        <Compile Include="Entities\User\RoleEntity.cs" />
+        <Compile Include="Entities\User\UserClaimEntity.cs" />
+        <Compile Include="Entities\User\UserEntity.cs" />
+        <Compile Include="Entities\User\UserLoginEntity.cs" />
+        <Compile Include="Enums\AuthenticationStatus.cs" />
+        <Compile Include="Enums\InstanceLifetime.cs" />
+        <Compile Include="Enums\UserSignInStatus.cs" />
+        <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="ViewModels\Account\AccountForgotPasswordViewModel.cs" />
+        <Compile Include="ViewModels\Account\AccountLoginViewModel.cs" />
+        <Compile Include="ViewModels\Account\AccountRegisterViewModel.cs" />
+        <Compile Include="ViewModels\Account\AccountResetPasswordViewModel.cs" />
+        <Compile Include="ViewModels\Admin\AdminEditReportedCommentViewModel.cs" />
+        <Compile Include="ViewModels\Admin\AdminEditUserViewModel.cs" />
+        <Compile Include="ViewModels\Admin\AdminUserListViewModel.cs" />
+        <Compile Include="ViewModels\Admin\AdminEditRoleViewModel.cs" />
+        <Compile Include="ViewModels\Article\ArticleAddViewModel.cs" />
+        <Compile Include="ViewModels\Article\ArticleCardTextViewModel.cs" />
+        <Compile Include="ViewModels\Article\ArticleCardViewModel.cs" />
+        <Compile Include="ViewModels\Article\ArticleAddCommentReportViewModel.cs" />
+        <Compile Include="ViewModels\Article\ArticleCarouselViewModel.cs" />
+        <Compile Include="ViewModels\Article\ArticleCommentReportViewModel.cs" />
+        <Compile Include="ViewModels\Article\ArticleCommentViewModel.cs" />
+        <Compile Include="ViewModels\Article\ArticleDeleteViewModel.cs" />
+        <Compile Include="ViewModels\Article\ArticleEditViewModel.cs" />
+        <Compile Include="ViewModels\Article\ArticleIndexViewModel.cs" />
+        <Compile Include="ViewModels\Article\ArticleListViewModel.cs" />
+        <Compile Include="ViewModels\Article\ArticleCardListViewModel.cs" />
+        <Compile Include="ViewModels\Article\ArticleSearchViewModel.cs" />
+        <Compile Include="ViewModels\Article\ArticleViewModel.cs" />
+        <Compile Include="ViewModels\Base\ViewModelBase.cs" />
+        <Compile Include="ViewModels\Home\HomeViewModel.cs" />
+        <Compile Include="ViewModels\Manage\ManageChangePasswordViewModel.cs" />
+        <Compile Include="ViewModels\Manage\ManageViewModel.cs" />
+        <Compile Include="ViewModels\Common\PageResultViewModel.cs" />
+        <Compile Include="ViewModels\Common\PaginationItemViewModel.cs" />
+        <Compile Include="ViewModels\Common\PaginationViewModel.cs" />
+        <Compile Include="ViewModels\User\UserViewModel.cs" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Include="packages.config" />
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+         Other similar extension points exist, see Microsoft.Common.targets.
+    <Target Name="BeforeBuild">
+    </Target>
+    <Target Name="AfterBuild">
+    </Target>
+    -->
+
+</Project>

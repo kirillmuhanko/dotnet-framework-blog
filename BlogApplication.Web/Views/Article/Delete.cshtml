@@ -1,0 +1,34 @@
+@using BlogApplication.Models.Constants.Controllers
+@model BlogApplication.Models.ViewModels.Article.ArticleDeleteViewModel
+
+<div class="container mt-5">
+    <div class="row">
+        <h2 class="mx-auto">Delete Article</h2>
+    </div>
+
+    <div class="row">
+        <p class="mx-auto">Are you sure you want to delete <b>@Model.Title.Text</b>?</p>
+    </div>
+
+    <div class="row">
+        @using (Html.BeginForm(
+            ActionNames.Delete,
+            ControllerNames.Article,
+            FormMethod.Post,
+            new {@class = "col-md-6 mx-auto", enctype = "multipart/form-data"}))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(t => t.Id)
+
+            <div class="form-group">
+                <input class="btn btn-block btn-lg btn-outline-danger" type="submit" value="Delete">
+            </div>
+
+            <div class="form-group">
+                <p class="text-center">
+                    @Html.ActionLink("Back to article list", ActionNames.List)
+                </p>
+            </div>
+        }
+    </div>
+</div>

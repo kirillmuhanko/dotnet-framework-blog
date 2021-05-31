@@ -1,0 +1,42 @@
+﻿@using BlogApplication.Models.Constants.Controllers
+@using BlogApplication.Models.Constants.StringSymbols
+@using BlogApplication.Shared.Extensions
+@model BlogApplication.Models.ViewModels.Article.ArticleCardViewModel
+
+<div class="col-md-6 mb-4 d-flex align-items-stretch">
+    <div class="card shadow-sm w-100">
+        @if (Model.HasImage)
+        {
+            <img class="card-img-top image-cover-6" src="@Url.Action(ActionNames.GetCachedImage, ControllerNames.Article, new {id = Model.Id})" alt>
+            <div class="card-body">
+                <h5 class="card-title">
+                    @(Model.Title.Truncate(25, StringSymbols.TripleDots))
+                </h5>
+                <p class="card-text">
+                    @(Model.Text.Truncate(100, StringSymbols.TripleDots))
+                </p>
+            </div>
+        }
+        else
+        {
+            <div class="card-body">
+                <h5 class="card-title">
+                    @(Model.Title.Truncate(25, StringSymbols.TripleDots))
+                </h5>
+                <p class="card-text">
+                    @(Model.Text.Truncate(550, StringSymbols.TripleDots))
+                </p>
+            </div>
+        }
+        <div class="align-items-center card-footer d-flex justify-content-between">
+            <div class="btn-group">
+                @Html.ActionLink(
+                    "Read article",
+                    ActionNames.Index,
+                    ControllerNames.Article,
+                    new {id = Model.Id},
+                    new {@class = "btn btn-sm btn-outline-secondary"})
+            </div>
+        </div>
+    </div>
+</div>

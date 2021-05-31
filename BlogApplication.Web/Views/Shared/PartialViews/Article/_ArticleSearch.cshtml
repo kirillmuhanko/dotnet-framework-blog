@@ -1,0 +1,20 @@
+﻿@using BlogApplication.Models.Constants.Controllers
+@model BlogApplication.Models.ViewModels.Article.ArticleSearchViewModel
+
+@using (Html.BeginForm(
+    ActionNames.Search,
+    ControllerNames.Article,
+    FormMethod.Post))
+{
+    <div class="align-items-center d-flex flex-nowrap">
+        @Html.AntiForgeryToken()
+        @Html.TextBoxFor(t => t.Query.Text,
+            new
+            {
+                @class = "form-control mr-2",
+                placeholder = "Search article",
+                required = ""
+            })
+        <button class="btn btn-outline-secondary" type="submit">Search</button>
+    </div>
+}

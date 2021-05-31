@@ -1,0 +1,55 @@
+﻿@using BlogApplication.Models.Constants.Controllers
+@model BlogApplication.Models.ViewModels.Article.ArticleAddCommentReportViewModel
+
+<div class="container mt-5">
+    <div class="row">
+        <h2 class="mx-auto">
+            Report Comment
+        </h2>
+    </div>
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div class="border-secondary card mb-3">
+                <div class="card-header">
+                    <div class="align-items-center d-flex justify-content-between ">
+                        <p>
+                            @Model.Comment.UserName
+                        </p>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>
+                        @Model.Comment.Text
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        @using (Html.BeginForm(
+            ActionNames.Report,
+            ControllerNames.ArticleComment,
+            FormMethod.Post,
+            new {@class = "col-md-6 mx-auto", enctype = "multipart/form-data"}))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+            @Html.HiddenFor(t => t.Comment.Id)
+            @Html.HiddenFor(t => t.CommentReport.CommentId)
+            @Html.DisplayFor(t => t.CommentReport.Text, "FormGroups/TextAreaFormGroupComponent")
+
+            <div class="form-group">
+                <input class="btn btn-block btn-lg btn-outline-danger" type="submit" value="Report">
+            </div>
+
+            <div class="form-group">
+                <p class="text-center">
+                    @Html.ActionLink("Back to article", ActionNames.Index, ControllerNames.Article, new {id = Model.Comment.Id}, null)
+                </p>
+            </div>
+        }
+    </div>
+</div>

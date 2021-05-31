@@ -1,0 +1,18 @@
+﻿@model BlogApplication.Models.ViewModels.Common.PaginationViewModel
+
+<ul class="pagination justify-content-center">
+    @{
+        var previousPage = Model.GetPreviousPage("Previous");
+        var nextPage = Model.GetNextPage("Next");
+    }
+
+    @Html.DisplayFor(t => previousPage, "Paginaton/PaginationItem")
+
+    @for (var i = Model.PageFrom; i <= Model.PageTo; i++)
+    {
+        var currentPage = Model.GetPage(i);
+        @Html.DisplayFor(t => currentPage, "Paginaton/PaginationItem")
+    }
+
+    @Html.DisplayFor(t => nextPage, "Paginaton/PaginationItem")
+</ul>

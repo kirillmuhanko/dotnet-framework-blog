@@ -1,0 +1,13 @@
+﻿.component__image-preview {
+    align-items: center;
+    color: var(--silver);
+    display: flex;
+    font-weight: bold;
+    justify-content: center;
+    min-height: 100px;
+}
+
+.component__image {
+    display: none;
+    width: 100%;
+}

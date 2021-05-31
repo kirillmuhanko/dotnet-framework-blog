@@ -1,0 +1,75 @@
+﻿@model BlogApplication.Models.ViewModels.Home.HomeViewModel
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-sm">
+                    <div class="mb-4">
+                        @Html.Partial("PartialViews/Article/_ArticleSearch", Model.ArticleSearch)
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm">
+                    <div class="card mb-4">
+                        <div class="card-header">Top Articles <span class="fa fa-star text-warning"></span></div>
+                        <div class="card-body card-body-carousel">
+                            @Html.DisplayFor(t => t.TopArticleCarousel, "Article/ArticleCarouselViewModel")
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm">
+                    <div class="card mb-4">
+                        <div class="card-header">Last Commented Articles <span class="fa fa-star text-warning"></span></div>
+                        <div class="card-body">
+                            <div class="list-group">
+                                @foreach (var article in Model.LastCommentedArticles)
+                                {
+                                    @Html.DisplayFor(t => article, "Article/ArticleCardTextViewModel")
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm">
+                    <div class="card mb-4">
+                        <div class="card-header">Last Articles <span class="fa fa-star text-warning"></span></div>
+                        <div class="card-body">
+                            <div class="list-group">
+                                @foreach (var article in Model.LastArticles)
+                                {
+                                    @Html.DisplayFor(t => article, "Article/ArticleCardTextViewModel")
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="row">
+                @foreach (var article in Model.Articles)
+                {
+                    @Html.DisplayFor(t => article, "Article/ArticleCardViewModel")
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm mx-auto">
+            @Html.DisplayFor(t => t.Pagination, "Paginaton/PaginationViewModel")
+        </div>
+    </div>
+</div>

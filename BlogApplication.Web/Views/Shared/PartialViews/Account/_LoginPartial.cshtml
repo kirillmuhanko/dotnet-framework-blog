@@ -1,0 +1,41 @@
+﻿@using BlogApplication.Models.Constants.Controllers
+@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm(
+        ActionNames.LogOff,
+        ControllerNames.Account,
+        FormMethod.Post,
+        new {id = "logoutForm", @class = "ml-auto"}))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="navbar-nav">
+            <li class="active mr-sm-2 nav-item">
+                <a class="nav-link" href="@Url.Action(ActionNames.Index, ControllerNames.Manage)">
+                    @($"Hello {User.Identity.GetUserName()}!")
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-outline-secondary" href="javascript:document.getElementById('logoutForm').submit()">
+                    Log off
+                </a>
+            </li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="ml-auto navbar-nav ">
+        <li class="active mr-sm-2 nav-item">
+            <a class="btn btn-outline-secondary" href="@Url.Action(ActionNames.Register, ControllerNames.Account)" role="button">
+                Register
+            </a>
+        </li>
+        <li class="active nav-item">
+            <a class="nav-link" href="@Url.Action(ActionNames.LogIn, ControllerNames.Account)">
+                Log in
+            </a>
+        </li>
+    </ul>
+}

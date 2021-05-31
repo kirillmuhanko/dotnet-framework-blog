@@ -1,0 +1,22 @@
+﻿@using BlogApplication.Shared.Builders.Strings
+@model BlogApplication.Models.Components.FormGroups.UserNameFormGroupComponent
+
+<div class="form-group">
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text">@@</span>
+        </div>
+        @Html.TextBoxFor(
+            t => t.Text,
+            new
+            {
+                @class = HtmlClassBuilder.Create()
+                    .WithHtmlClass("form-control")
+                    .WithHtmlClass("is-valid", Model.IsOk)
+                    .WithHtmlClass("is-invalid", Model.HasErrors)
+                    .Build(),
+                placeholder = Html.DisplayNameFor(t => t)
+            })
+        @Html.ValidationMessageFor(t => t, "", new {@class = "invalid-feedback"})
+    </div>
+</div>

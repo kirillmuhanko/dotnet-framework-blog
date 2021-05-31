@@ -1,0 +1,50 @@
+﻿@using BlogApplication.Models.Constants.Controllers
+<script id="comment-component" type="text/html">
+    <div class="border-secondary card mb-3">
+        <div class="card-header">
+            <div class="align-items-center d-flex justify-content-between">
+                <p class="component__title"></p>
+                @if (!User.IsInRole(UserRoles.Author))
+                {
+                    <a class="component__action-link btn btn-sm btn-outline-secondary" href="#">
+                        <i class="fa fa-flag"></i>
+                    </a>
+                }
+            </div>
+        </div>
+        <div class="card-body">
+            <p class="component__text card-text"></p>
+        </div>
+    </div>
+</script>
+
+<script id="comment-editor-component" type="text/html">
+    <div class="border-secondary card mb-3">
+        <div class="card-header">
+            <div class="align-items-center d-flex justify-content-between">
+                <p class="component__title"></p>
+                @if (User.IsInRole(UserRoles.Author))
+                {
+                    <div class="btn-group">
+                        <button class="component__button-save btn btn-sm btn-outline-secondary disabled">
+                            <i class="fa fa-save"></i>
+                        </button>
+                        <button class="component__button-delete btn btn-sm btn-outline-danger">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="card-body">
+            @if (User.IsInRole(UserRoles.Author))
+            {
+                <p class="component__text card-text" contenteditable="true"></p>
+            }
+            else
+            {
+                <p class="component__text card-text"></p>
+            }
+        </div>
+    </div>
+</script>

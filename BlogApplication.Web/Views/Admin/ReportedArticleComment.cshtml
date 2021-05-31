@@ -1,0 +1,58 @@
+@using BlogApplication.Models.Constants.Controllers
+@model BlogApplication.Models.ViewModels.Admin.AdminEditReportedCommentViewModel
+
+<div class="container mt-5">
+    <div class="row">
+        <h2 class="mx-auto">Reported Article Comment</h2>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col mx-auto">
+            <div class="card border-light mb-3">
+                <a class="card-header text-dark" href="@Url.Action(ActionNames.EditUser, ControllerNames.Admin, new {id = Model.CommentReport.UserId})">
+                    @Model.CommentReport.UserName
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title">Report Message</h5>
+                    <p class="card-text">@Model.CommentReport.Text.Text</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col mx-auto">
+            <div class="card border-danger mb-3">
+                <a class="card-header text-dark" href="@Url.Action(ActionNames.EditUser, ControllerNames.Admin, new {id = Model.Comment.UserId})">
+                    @Model.Comment.UserName
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title">Article Comment</h5>
+                    <p class="card-text">@Model.Comment.Text</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        @using (Html.BeginForm(ActionNames.AllowArticleComment, ControllerNames.Admin, FormMethod.Post, new {@class = "col-sm mx-auto", role = "form"}))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(t => t.CommentReport.Id)
+
+            <div class="form-group">
+                <input class="btn btn-block btn-lg btn-outline-success" type="submit" value="Allow">
+            </div>
+        }
+        @using (Html.BeginForm(ActionNames.BlockArticleComment, ControllerNames.Admin, FormMethod.Post, new {@class = "col-sm mx-auto", role = "form"}))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(t => t.Comment.Id)
+            @Html.HiddenFor(t => t.CommentReport.Id)
+
+            <div class="form-group">
+                <input class="btn btn-block btn-lg btn-outline-danger" type="submit" value="Block">
+            </div>
+        }
+    </div>
+</div>

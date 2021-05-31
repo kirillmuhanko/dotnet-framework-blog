@@ -1,0 +1,18 @@
+﻿@using BlogApplication.Shared.Builders.Strings
+@model BlogApplication.Models.ViewModels.Common.PaginationItemViewModel
+
+@{
+    var active = Model.IsActive ? "active" : string.Empty;
+    var disabled = Model.IsDisabled ? "disabled" : string.Empty;
+
+    var queryString = QueryStringBuilder
+        .Create(Request.Url?.ToString())
+        .AddQuery("page", Model.PageNumber.ToString())
+        .Build();
+}
+
+<li class="@active @disabled page-item">
+    <a class="page-link" href="@queryString">
+        @Model.PageText
+    </a>
+</li>

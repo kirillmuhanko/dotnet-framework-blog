@@ -1,0 +1,16 @@
+﻿/* Maximize carousel size inside bootstrap card. */
+.card-body-carousel {
+    padding: 0.15rem;
+}
+
+/* Maximize carousel size inside bootstrap card. */
+.carousel {
+    border-radius:.25rem;
+    overflow: hidden;
+}
+
+/* Fix bootstrap list-group double border. */
+.list-group-item + .list-group-item {
+    border-width: 0.01rem;
+    border-top-width: 0;
+}

@@ -1,0 +1,25 @@
+﻿@using BlogApplication.Shared.Builders.Strings
+@model BlogApplication.Models.Components.FormGroups.CheckBoxFormGroupComponent
+
+<div class="form-group">
+    <div class="form-check">
+        @Html.CheckBoxFor(
+            t => t.IsChecked,
+            new
+            {
+                @class = HtmlClassBuilder.Create()
+                    .WithHtmlClass("component__input-checkbox")
+                    .WithHtmlClass("form-check-input")
+                    .WithHtmlClass("is-valid", Model.IsOk)
+                    .WithHtmlClass("is-invalid", Model.HasErrors)
+                    .Build()
+            })
+        @Html.LabelFor(
+            t => t,
+            new
+            {
+                @class = "form-check-label"
+            })
+        @Html.ValidationMessageFor(t => t, "", new {@class = "invalid-feedback"})
+    </div>
+</div>

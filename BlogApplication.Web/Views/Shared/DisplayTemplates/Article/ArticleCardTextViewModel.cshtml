@@ -1,0 +1,16 @@
+﻿@using BlogApplication.Models.Constants.Controllers
+@using BlogApplication.Models.Constants.StringSymbols
+@using BlogApplication.Shared.Extensions
+@model BlogApplication.Models.ViewModels.Article.ArticleCardTextViewModel
+
+<a class="list-group-item list-group-item-action" href="@Url.Action(ActionNames.Index, ControllerNames.Article, new {id = Model.Id})">
+    <h5 class="card-title">
+        @Model.Title.Truncate(25, StringSymbols.TripleDots)
+    </h5>
+    <p class="mb-1">
+        @Model.Text.Truncate(50, StringSymbols.TripleDots)
+    </p>
+    <small class="text-muted">
+        @Html.DisplayFor(t => t.ModifiedDateTime)
+    </small>
+</a>

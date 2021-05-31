@@ -1,0 +1,26 @@
+﻿@using BlogApplication.Shared.Builders.Strings
+@model BlogApplication.Models.Components.FormGroups.ImageFormGroupComponent
+
+<div class="form-group">
+    <div class="custom-file">
+        @Html.TextBoxFor(
+            t => t.Image,
+            new
+            {
+                @class = HtmlClassBuilder.Create()
+                    .WithHtmlClass("component__input-image-upload")
+                    .WithHtmlClass("custom-file-input")
+                    .WithHtmlClass("is-valid", Model.IsOk)
+                    .WithHtmlClass("is-invalid", Model.HasErrors)
+                    .Build(),
+                type = "file"
+            })
+        @Html.LabelFor(
+            t => t,
+            new
+            {
+                @class = "component__text custom-file-label"
+            })
+        @Html.ValidationMessageFor(t => t, "", new {@class = "invalid-feedback"})
+    </div>
+</div>

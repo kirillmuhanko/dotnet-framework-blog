@@ -1,0 +1,47 @@
+@using BlogApplication.Models.Constants.Controllers
+@model BlogApplication.Models.ViewModels.Admin.AdminUserListViewModel
+
+<div class="container mt-4">
+    <div class="mx-auto row">
+        <h2 class="mx-auto">User List</h2>
+    </div>
+</div>
+
+<div class="container">
+    <div class="mx-auto row">
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            @{
+                var recordNumber = Model.Pagination.FirstRecord;
+                foreach (var user in Model.Users)
+                {
+                    <tr>
+                        <th scope="row">@(recordNumber++)</th>
+                        <td>@user.UserName</td>
+                        <td>@user.Email</td>
+                        <td>
+                            @Html.ActionLink("Edit", ActionNames.EditUser, new {id = user.Id}, new {@class = "btn btn-sm btn-outline-secondary"})
+                        </td>
+                    </tr>
+                }
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm mx-auto">
+            @Html.DisplayFor(t => t.Pagination, "Paginaton/PaginationViewModel")
+        </div>
+    </div>
+</div>

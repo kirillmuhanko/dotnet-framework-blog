@@ -1,0 +1,15 @@
+﻿@using BlogApplication.Models.Constants.Controllers
+@model BlogApplication.Models.ViewModels.Common.PageResultViewModel
+
+<div class="container mt-5">
+    <div class="row">
+        <h2 class="mx-auto">
+            @Model.Text
+        </h2>
+    </div>
+    <div class="form-group mt-1">
+        <p class="text-center">
+            @Html.ActionLink("Back to home page", ActionNames.Index, ControllerNames.Home)
+        </p>
+    </div>
+</div>

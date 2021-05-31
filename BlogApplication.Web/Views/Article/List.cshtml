@@ -1,0 +1,55 @@
+@using BlogApplication.Models.Constants.Controllers
+@using BlogApplication.Models.Constants.StringSymbols
+@using BlogApplication.Shared.Extensions
+@model BlogApplication.Models.ViewModels.Article.ArticleListViewModel
+
+<div class="container mt-4">
+    <div class="mx-auto row">
+        <h2 class="mx-auto">Article List</h2>
+    </div>
+</div>
+
+<div class="container">
+    <div class="mx-auto row">
+        <p>
+            @Html.ActionLink("Create New", ActionNames.Add, null, new {@class = "btn btn-outline-success"})
+        </p>
+
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            @{
+                var recordNumber = Model.Pagination.FirstRecord;
+                foreach (var article in Model.Articles)
+                {
+                    <tr>
+                        <th scope="row">@(recordNumber++)</th>
+                        <td>@article.Title.Truncate(25, StringSymbols.TripleDots)</td>
+                        <td>@article.Text.Truncate(50, StringSymbols.TripleDots)</td>
+                        <td>
+                            @Html.ActionLink("Edit", ActionNames.Edit, new {id = article.Id}, new {@class = "btn btn-sm btn-outline-secondary"})
+                            @Html.ActionLink("Read", ActionNames.Index, new {id = article.Id}, new {@class = "btn btn-sm btn-outline-secondary"})
+                            @Html.ActionLink("Delete", ActionNames.Delete, new {id = article.Id}, new {@class = "btn btn-sm btn-outline-danger"})
+                        </td>
+                    </tr>
+                }
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm mx-auto">
+            @Html.DisplayFor(t => t.Pagination, "Paginaton/PaginationViewModel")
+        </div>
+    </div>
+</div>

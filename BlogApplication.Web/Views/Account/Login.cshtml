@@ -1,0 +1,37 @@
+﻿@using BlogApplication.Models.Constants.Controllers
+@model BlogApplication.Models.ViewModels.Account.AccountLoginViewModel
+
+<div class="container mt-5">
+    <div class="row">
+        <h2 class="mx-auto">Please sign in</h2>
+    </div>
+
+    <div class="row">
+        @using (Html.BeginForm(
+            ActionNames.LogIn,
+            ControllerNames.Account,
+            FormMethod.Post,
+            new {@class = "col-md-6 mx-auto", role = "form"}))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary("", new {@class = "text-danger"})
+            @Html.HiddenFor(t => t.ReturnUrl)
+            @Html.DisplayFor(t => t.UserName, "FormGroups/UserNameFormGroupComponent")
+            @Html.DisplayFor(t => t.Password, "FormGroups/PasswordFormGroupComponent")
+            @Html.DisplayFor(t => t.RememberMe, "FormGroups/CheckBoxFormGroupComponent")
+
+            <div class="form-group">
+                <input class="btn btn-block btn-lg btn-outline-primary" type="submit" value="Sign in">
+            </div>
+
+            <div class="form-group">
+                <p class="text-center">
+                    @Html.ActionLink("Register as a new user", ActionNames.Register)
+                </p>
+                <p class="text-center">
+                    @Html.ActionLink("Forgot your password?", ActionNames.ForgotPassword)
+                </p>
+            </div>
+        }
+    </div>
+</div>
